@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var strStr = function (haystack, needle) {
+        if (needle == '') {
+          return 0
+        }
+        if (needle.length > haystack.length) {
+          return -1
+        }
+        for (let i = 0; i + needle.length <= haystack.length; i++) {
+          let d = true
+          for (let j = 0; j < needle.length; j++) {
+            if (haystack[i + j] !== needle[j]) {
+              d = false
+            }
+          }
+          if (d) {
+            return i
+          }
+        }
+        return -1
+      }
+
+      // console.log(strStr('hello', 'll'))
+      const haystack = 'hello'
+      const needle = 'ddad'
+      let n = haystack.length
+      let m = needle.length
+      // if (m === 0) return 0
+
+      let next = new Array(m).fill(0)
+      for (let i = 1, j = 0; i < m; i++) {
+        while (j > 0 && needle[i] !== needle[j]) {
+          j = next[j - 1]
+        }
+        if (needle[i] === needle[j]) {
+          j++
+        }
+
+        next[i] = j
+        console.log(next)
+      }
+      console.log(next)
+
+      // var strStr = function (haystack, needle) {
+      //   var newhaystack = haystack.split('')
+      //   var newneedle = needle.split('')
+
+      //   var i = 0
+      //   var j = 0
+      //   var result
+      //   let flag = false
+      //   while (flag === false && newneedle.length !== 0) {
+      //     if (newhaystack[i] == undefined || newneedle.length > newhaystack.length) {
+      //       result = -1
+      //       break
+      //     }
+
+      //     if (newhaystack[i] !== newneedle[j]) {
+      //       i++
+      //     } else {
+      //       for (let c = i; j < newneedle.length && c < newhaystack.length; j++, c++) {
+      //         if (newhaystack[c] == newneedle[j]) {
+      //           flag = i
+      //         } else {
+      //           flag = false
+      //           j = 0
+      //           break
+      //         }
+      //       }
+      //       i++
+      //       result = flag
+      //       if (i === newhaystack.length && j === 1 && newneedle.length > 1) {
+      //         result = -1
+      //       }
+      //       if (newhaystack.length - i < newneedle.length - 1) {
+      //         result = -1
+      //       }
+      //     }
+      //   }
+
+      //   if (newneedle.length == 0) {
+      //     result = 0
+      //   }
+
+      //   return result
+      // }
+    </script>
+  </body>
+</html>

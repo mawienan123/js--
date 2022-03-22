@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let Preson = function (name, age) {
+        this.name = name
+        this.age = age
+      }
+
+      function _new(fun, ...rest) {
+        const newData = Object.create(fun.prototype)
+        const result = fun.call(newData, rest)
+        console.log(result, newData)
+        return typeof result === 'object' ? result : newData
+      }
+
+      var a = _new(Preson, '释迦', 13)
+      console.log(a)
+
+      // 在内存中创建一个新对象。
+      // 这个新对象内部的[[Prototype]]指针被赋值为构造函数的 prototype 属性。
+      // 构造函数内部的 this 被赋值为这个新对象（即 this 指向新对象）。
+      // 执行构造函数内部的代码（给新对象添加属性）。
+      // 如果构造函数返回非空对象，则返回该对象；否则，返回刚创建的新对象。
+
+      //   声明一个对象和new一个对象有什么区别?
+
+      // 声明一个对象，在超出对象的作用范围时，会自动释放资源
+      // new一个对象，如果你不显式释放资源，哪怕你结束程序也不能收回这些资源，可以用delete释放。
+      // var a = { test: 1 }
+      // var c = { test: 1 }
+      // var b = new Object(a)
+      // console.log(a == c)
+      // function ddd() {
+      //   console.log(this)
+      //   this.name = '令狐冲'
+      // }
+      // function Foo() {
+      //   console.log(this)
+      //   this.name = '令狐冲'
+      // }
+      // var f = new Foo()
+      // console.log(f)
+      // ddd(0)
+    </script>
+  </body>
+</html>

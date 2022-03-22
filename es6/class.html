@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //todo
+      // ES6中类名不可以重复声明，而ES5可以
+      // ES6中类的声明不会提升，ES5中类的声明会提升
+      // ES6中类的prototype属性是一个不可配置的，不能枚举的只读属性，而ES5中类的prototype属性是可写的。
+      // ES6的类中的所有代码都会运行在严格模式下
+      // ES6中的类的方法全部是不可枚举的，而ES5中需要我们使用Object.defineProperty手动设置
+      // ES6类只能用new进行调用，不允许使用new关键字调用类里面的方法,而ES5没有该限制
+      // ES6中的子类的原型__proto__被修改为父类，而ES5中子类的原型__proto__指向Function.prototype
+      // ES6中的类可以继承内置对象,而ES5不能
+
+      //todo
+      //   function Point(x, y) {
+      //     this.x = x
+      //     this.y = y
+      //   }
+
+      //   Point.name = 2
+
+      //   Point.prototype.toString = function () {
+      //     return '(' + this.x + ', ' + this.y + ')'
+      //   }
+
+      //   var p = new Point(1, 2)
+      //   console.log(Point.name)
+      //   console.log(p.x)
+      //   console.log(p.toString())
+
+      //todo1
+      let methodName = 'getArea'
+      class Point {
+        //实例属性除了定义在constructor()方法里面的this上面，也可以定义在类的最顶层。
+        _count = 0
+        //静态属性指的是 Class 本身的属性，即Class.propName，而不是定义在实例对象（this）上的属性。
+        static myStaticProp = 42
+
+        //私有方法和私有属性，是只能在类的内部访问的方法和属性，外部不能访问
+        // 为class加了私有属性。方法是在属性名之前，使用#表示。
+        #count = 0
+        static {
+          this.myStaticProp = 3333
+        }
+        constructor(x, y) {
+          this.x = x
+          this.#count = 2
+        }
+
+        toString = () => {
+          console.log(this.x)
+        };
+        *[methodName]() {
+          // 如果某个方法之前加上星号（*），就表示该方法是一个 Generator 函数。
+        }
+
+        get prop() {
+          return 'getter'
+        }
+        set prop(value) {
+          console.log('setter: ' + value)
+        }
+        static bar() {
+          //  如果静态方法包含this关键字，这个this指的是类，而不是实例。
+          //，静态方法bar调用了this.baz，这里的this指的是Foo类，而不是Foo的实例，等同于调用Foo.baz。另外，从这个例子还可以看出，静态方法可以与非静态方法重名。
+          this.classMethod()
+        }
+        static classMethod() {
+          console.log('staticclassMethod')
+          //静态方法也是可以从super对象上调用的。
+          // 子类也可以调用父类的静态方法
+          //类相当于实例的原型，所有在类中定义的方法，都会被实例继承。如果在一个方法前，加上static关键字，就表示该方法不会被实例继承，而是直接通过类来调用，这就称为“静态方法”。
+          return 'hello'
+        }
+        classMethod() {
+          console.log('classMethod')
+          return 'hello1'
+        }
+
+        #sum() {
+          return 2
+        }
+      }
+      Point.bar()
+      let inst = new Point('2')
+
+      inst.prop = 123
+      console.log(inst)
+      console.log(Point.myStaticProp)
+      //   // setter: 123
+      //   console.log(inst.prop)
+      //   // 'getter'
+      //   const { toString } = inst
+      //   toString()
+      //不可枚举
+      //   Object.keys(Point.prototype)
+      // []
+      //   Object.getOwnPropertyNames(Point.prototype)
+      // ["constructor","toString"]
+
+      //todo
+      //   let person = new (class {
+      //     constructor(name) {
+      //       this.name = name
+      //     }
+
+      //     sayName() {
+      //       console.log(this.name)
+      //     }
+      //   })('张三')
+
+      //   person.sayName()
+
+      //todo
+
+      //   class Widget {
+      //     foo(baz) {
+      //       console.log(0)
+      //       bar.call(this, baz)
+      //     }
+
+      //     // ...
+      //   }
+
+      //   function bar(baz) {
+      //     return (this.snaf = baz)
+      //   }
+      //   const dd = new Widget()
+      //   const c = () => {
+      //     console.log(2)
+      //   }
+      //   dd.foo(c)
+      //   console.log(dd)
+      //   dd.snaf()
+    </script>
+  </body>
+</html>

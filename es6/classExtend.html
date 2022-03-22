@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //todo
+      //getPrototypeOf 该方法返回指定对象的原型
+
+      //  var proto = {};
+      // var obj = Object.create(proto);
+      // Object.getPrototypeOf(obj) === proto;
+
+      //   todo Object.getOwnPropertyDescriptor  方法返回指定对象上一个自有属性对应的属性描述符。
+      //       const object1 = {
+      //   property1: 42
+      // };
+
+      // const descriptor1 = Object.getOwnPropertyDescriptor(object1, 'property1');
+
+      // console.log(descriptor1.configurable);
+      // // expected output: true
+
+      // console.log(descriptor1.value);
+      // // expected output: 42
+
+      //  todo Object.getOwnPropertyNames 返回一个数组，该数组对元素是 obj自身拥有的枚举或不可枚举属性名称字符串
+
+      //   var obj = { 0: "a", 1: "b", 2: "c"};
+      //   console.log(Object.getOwnPropertyNames(obj).sort()) // ["0", "1", "2"]
+
+      //  todo instanceof 操作符来判断对象的具体类型
+
+      //  function Car(make, model, year) {
+      //   this.make = make;
+      //   this.model = model;
+      //   this.year = year;
+      // }
+      // const auto = new Car('Honda', 'Accord', 1998);
+
+      // console.log(auto instanceof Car);
+
+      class Point {
+        #p = 1
+        constructor(x, y) {
+          this.x = x
+          this.y = y
+        }
+        toName() {
+          console.log('toname')
+          return this.x
+        }
+        static hello() {
+          console.log('hello world')
+        }
+        hello() {
+          console.log('hello world')
+        }
+        // getP()是父类用来读取私有属性的方法，通过该方法，子类就可以读到父类的私有属性。
+        getP() {
+          return this.#p
+        }
+      }
+
+      class ColorPoint extends Point {
+        constructor(x, y, color) {
+          // 子类必须在constructor()方法中调用super()，否则就会报错。这是因为子类自己的this对象，必须先通过父类的构造函数完成塑造，得到与父类同样的实例属性和方法，然后再对其进行加工，添加子类自己的实例属性和方法。如果不调用super()方法，子类就得不到自己的this对象。
+          //   新建子类实例时，父类的构造函数必定会先运行一次。
+          //   在子类的构造函数中，只有调用super()之后，才可以使用this关键字，否则会报错。这是因为子类实例的构建，必须先完成父类的继承，只有super()方法才能让子类实例继承父类。
+          //   除了私有属性，父类的所有属性和方法，都会被子类继承，其中包括静态方法。
+          super(x, y) // 调用父类的constructor(x, y)
+
+          //   super这个关键字，既可以当作函数使用，也可以当作对象使用。在这两种情况下，它的用法完全不同。
+          //   第一种情况，super作为函数调用时，代表父类的构造函数。ES6 要求，子类的构造函数必须执行一次super函数，super()只能用在子类的构造函数之中，用在其他地方就会报错。
+          //   第二种情况，super作为对象时，在普通方法中，指向父类的原型对象；在静态方法中，指向父类。
+          //   由于super指向父类的原型对象，所以定义在父类实例上的方法或属性，是无法通过super调用的。
+          this.color = color
+        }
+
+        toString() {
+          return this.color + ' ' + super.toName() // 调用父类的toString()
+        }
+        static m() {
+          // 在子类的静态方法中通过super调用父类的方法时，方法内部的this指向当前的子类，而不是子类的实例。
+          super.hello()
+        }
+        static myMethod(msg) {
+          // 如果super作为对象，用在静态方法之中，这时super将指向父类，而不是父类的原型对象。
+          super.hello(msg)
+        }
+
+        myMethod(msg) {
+          super.hello(msg)
+        }
+      }
+      const a = new ColorPoint(2)
+      ColorPoint.hello()
+    </script>
+  </body>
+</html>

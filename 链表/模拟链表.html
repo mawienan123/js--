@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+     class Node {
+        constructor(element) {
+          this.element = element;
+          this.next = undefined;
+        }
+      }
+      class LinkedList {
+        constructor() {
+          this.count = 0; // {2}
+          this.head = undefined; // {3}
+          // this.equalsFn = equalsFn; // {4}
+        }
+        push(element) {
+          const node = new Node(element); // {1}
+          let current; // {2}
+          if (this.head == null) {
+            // {3}
+            this.head = node;
+          } else {
+            current = this.head; // {4}
+            while (current.next != null) {
+              // {5} 获得最后一项
+              current = current.next;
+            }
+            // 将其 next 赋为新元素，建立链接
+            current.next = node; // {6}
+          }
+          this.count++; // {7} }9
+        }
+      }
+
+    const list = new LinkedList();
+    list.push(15);
+
+    list.push(10);
+    console.log(list)
+    </script>
+  </body>
+</html>

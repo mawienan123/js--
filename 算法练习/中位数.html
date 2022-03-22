@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //   var findMedianSortedArrays = function (nums1, nums2) {
+      //     const newArry = nums1.concat(nums2)
+
+      //     const a = newArry.sort((a, b) => {
+      //       return a - b
+      //     })
+      //     let aLength = a.length
+      //     const center = aLength / 2
+      //     let dd
+      //     if (center % 1 === 0) {
+      //       dd = [center - 1, center]
+      //     } else {
+      //       dd = [Math.floor(center)]
+      //     }
+      //     let result = 0
+      //     dd.forEach((i) => {
+      //       result += a[i]
+      //     })
+      //     console.log(a)
+      //     console.log(dd)
+      //     console.log(result)
+      //     result = result / dd.length
+      //     return result.toFixed(5)
+      //   }
+      ;[3], [-3, -4]
+      //   1 i=1 j=0 now =-3 last=-3
+      //   2 i=1 j=1 now =-3 last=-3
+      //   function findMedianSortedArrays(nums1, nums2) {
+      //     const total = nums1.length + nums2.length
+
+      //     let i = 0,
+      //       j = 0,
+      //       now = null,
+      //       last = null
+      //     while (true) {
+      //       const num1 = nums1[i] !== undefined ? nums1[i] : undefined
+      //       const num2 = nums2[j] !== undefined ? nums2[j] : undefined
+
+      //       if (num1 === undefined) {
+      //         j++
+      //         now = num2
+      //       } else if (num2 === undefined) {
+      //         i++
+      //         now = num1
+      //       } else {
+      //         num1 < num2 ? i++ : j++
+      //         now = Math.min(num1, num2)
+      //       }
+
+      //       if (i + j > total / 2) {
+      //         break
+      //       }
+
+      //       last = now
+      //     }
+
+      //     return total % 2 === 0 ? (now + last) / 2 : now
+      //   }
+
+      function findMedianSortedArrays(num1, num2) {
+        const len = num1.length + num2.length
+        let i = 0
+        let j = 0
+        let end = null
+        let pre = null
+
+        while (true) {
+          const n1 = num1[i] == undefined ? undefined : num1[i]
+          const n2 = num2[j] == undefined ? undefined : num2[j]
+          if (n1 == undefined) {
+            j++
+            end = n2
+          } else if (n2 == undefined) {
+            i++
+            end = n1
+          } else {
+            num1[i] > num2[j] ? j++ : i++
+            end = Math.min(n1, n2)
+          }
+
+          if (i + j > len / 2) {
+            break
+          }
+          pre = end
+        }
+
+        return len % 2 == 0 ? (end + pre) / 2 : end
+      }
+      console.log(findMedianSortedArrays([0, 0], [0, 0]))
+    </script>
+  </body>
+</html>

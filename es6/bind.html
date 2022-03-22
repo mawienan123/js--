@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      Function.prototype._bind = function (arg) {
+        const self = this
+        // 不能用箭头函数因为获取不到箭头函数里面的arguments
+        return function () {
+          self.call(arg, ...arguments)
+        }
+      }
+
+      function ma(d, e) {
+        console.log(this.name)
+        console.log(d)
+        console.log(e)
+      }
+      const a = {
+        name: 2,
+      }
+
+      ma._bind(a)('dd', 'ccc')
+
+      //   Function.prototype.myBind = function () {
+      //     var ctx = arguments[0] || window,
+      //       self = this,
+      //       arrPro = Array.prototype,
+      //       args = arrPro.slice.call(arguments, 1)
+      //     return function () {
+      //       self.apply(ctx, arrPro.concat.call(args))
+      //     }
+      //   }
+
+      //   ma.myBind(a, '2', '3')()
+
+      // apply封装
+      //   Function.prototype._apply = function (arg, rest) {
+      //     const _this = Symbol('linshi')
+      //     arg[_this] = this
+      //     arg[_this](...rest)
+      //   }
+
+      //   function ma(d, e) {
+      //     console.log(this.name)
+      //     console.log(d)
+      //     console.log(e)
+      //   }
+      //   const a = {
+      //     name: 2,
+      //   }
+      //   ma._apply(a, [1, 2])
+
+      //   call封装
+      //   Function.prototype._call = function (arg, ...rest) {
+      //     const _this = Symbol('linshi')
+      //     arg[_this] = this
+      //     arg[_this](...rest)
+      //   }
+
+      //   function ma(d, e) {
+      //     console.log(this.name)
+      //     console.log(d)
+      //     console.log(e)
+      //   }
+      //   const a = {
+      //     name: 2,
+      //   }
+      //   ma._call(a, 1, 2)
+
+      Function.prototype.onlyBind = function (arg) {
+        arg.__fn__ = this
+        let args = [...arguments].slice(1)
+        arg.__result__ = function () {
+          let result_args = [...args, ...arguments]
+          arg.__fn__(...result_args)
+        }
+        return arg.__result__
+      }
+
+      // function ma(d, e) {
+      //   console.log(this)
+      //   console.log(d)
+      //   console.log(e)
+      // }
+      // const a = {
+      //   name: 2,
+      // }
+
+      // ma.onlyBind(a)('dd', 'ccc')
+
+      // Function.prototype.bind = function (context) {
+
+      // }
+
+      // function ClassA(str, fn, obj, arr) {
+      //     console.log(this.name);
+      //     console.log(str);
+      //     fn();
+      //     console.log(obj);
+      //     console.log(arr);
+      // }
+
+      // var obj = {
+      //     name: 'name'
+      // };
+
+      // var a = ClassA.bind(obj,'string')
+    </script>
+  </body>
+</html>

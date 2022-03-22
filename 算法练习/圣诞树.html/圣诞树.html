@@ -1,0 +1,176 @@
+
+
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="{CHARSET}">
+        <title></title>
+        <script src="jquery.1.8.3.html"></script>
+        <style>
+            .section{
+                
+                height:200px;
+                width: 100%;
+            }
+            #section1{
+                background: red;
+            }
+            #section2{
+                background: blue;
+            }
+            #section3{
+                background: gold;
+            }
+            #section4{
+                background: green;
+            }
+            #section5{
+                background: cyan;
+            }
+            nav{ position: fixed; width: 100px; right: 10px; top: 20px;}
+        </style>
+    </head>
+
+    <body>
+        <p class="container">
+            <p class="wrapper">
+                <p class="section" id="section1">section1</p>
+                <p class="section" id="section2">section2</p>
+                <p class="section" id="section3">section3</p>
+                <p class="section" id="section4">section4</p>
+                <p class="section" id="section5">section5</p>
+            </p>
+            <nav>
+                <a href="#section1" rel="external nofollow" class="current">section1</a>
+                <a href="#section2" rel="external nofollow">section2</a>
+                <a href="#section3" rel="external nofollow">section3</a>
+                <a href="#section4" rel="external nofollow">section4</a>
+                <a href="#section5" rel="external nofollow">section5</a>
+            </nav>
+        </p>
+    </body>
+    <script>
+
+//这个和下面代码可以选择一种
+//  var $navs = $('nav a'),          // 导航
+//$sections = $('.section'),       // 模块
+//$window = $(window),
+//navLength = $navs.length - 1;
+//
+//$window.on('scroll', function() {
+//var scrollTop = $window.scrollTop(),
+//  len = navLength;
+//
+//for (; len > -1; len--) {
+//  var that = $sections.eq(len);
+//  if (scrollTop >= that.offset().top) {
+//     $navs.removeClass('current').eq(len).addClass('current');
+//     break;
+//  }
+//}
+
+// $navs.on('click', function(e) {
+//   e.preventDefault();
+//   $('html, body').animate({
+//     'scrollTop': $($(this).attr('href')).offset().top
+//   }, 400);
+// });
+
+
+
+const data = {
+    hasNext: true,
+    pageCount: 1,
+    list: [
+      {
+        orderNo: '2121212212',
+        merchantName: '释迦小店',
+        orderContent: ['产品a', '产品b'],
+        createdAt: '2021-12-01 12:02:12',
+        orderStatus: '7',
+        orderActualAmount: '2000',
+      },
+      {
+        orderNo: '2121213212',
+        merchantName: '释迦小店',
+        orderContent: ['产品a', '产品b'],
+        createdAt: '2021-12-01 12:02:12',
+        orderStatus: '8',
+        orderActualAmount: '2000',
+      },
+      {
+        orderNo: '2121241212',
+        merchantName: '释迦小店',
+        orderContent: ['产品a', '产品b'],
+        createdAt: '2021-12-01 12:02:12',
+        orderStatus: '2',
+        orderActualAmount: '2000',
+      },
+      {
+        orderNo: '2121215212',
+        merchantName: '释迦小店',
+        orderContent: ['产品a', '产品b'],
+        createdAt: '2021-12-01 12:02:12',
+        orderStatus: '8',
+        orderActualAmount: '2000',
+      },
+      {
+        orderNo: '21211213212',
+        merchantName: '释迦小店',
+        orderContent: ['产品a', '产品b'],
+        createdAt: '2021-12-01 12:02:12',
+        orderStatus: '2',
+        orderActualAmount: '2000',
+      },
+      {
+        orderNo: '2121216212',
+        merchantName: '释迦小店',
+        orderContent: ['产品a', '产品b'],
+        createdAt: '2021-12-01 12:02:12',
+        orderStatus: '8',
+        orderActualAmount: '2000',
+      },
+      {
+        orderNo: '2121217212',
+        merchantName: '释迦小店',
+        orderContent: ['产品a', '产品b'],
+        createdAt: '2021-12-01 12:02:12',
+        orderStatus: '2',
+        orderActualAmount: '2000',
+      },
+    ],
+  }
+
+
+
+
+  listData = {
+    hasNext: true,
+    pageCount: 2,
+    list: [
+      {
+        orderNo: '9999',
+        merchantName: '释迦小店',
+        orderContent: ['产品a', '产品b'],
+        createdAt: '2021-12-01 12:02:12',
+        orderStatus: '7',
+        orderActualAmount: '2000',
+      },
+
+    ],
+  }
+
+const newData = { 
+          ...listData,
+          ...data,
+          list: {
+            ...console.list,
+            ...listData.list,
+          },
+        }
+console.log(newData,'newData')
+
+    </script>
+
+</html>

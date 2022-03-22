@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //   var removeDuplicates = function (nums) {
+      //     const leng = nums.length
+      //     let first = 0
+      //     let second = 1
+      //     while (second < leng) {
+      //       if (nums[first] !== nums[second]) {
+      //         first++
+      //         console.log(first, second)
+      //         nums[first] = nums[second]
+      //       }
+      //       second++
+      //     }
+      //     return first + 1
+      //   }
+
+      var removeDuplicates = function (nums) {
+        for (let i = nums.length - 2; i >= 0; i--) {
+          if (nums[i] == nums[i + 1]) {
+            nums.splice(i + 1, 1)
+          }
+        }
+        return nums.length
+      }
+
+      const ma = [0, 0, 0, 0, 1, 1, 2, 2, 2]
+      removeDuplicates(ma)
+      console.log(ma, '结果')
+    </script>
+  </body>
+</html>

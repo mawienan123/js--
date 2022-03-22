@@ -1,0 +1,36 @@
+//官网：https://less.bootcss.com/features/
+//神人在转义：https://blog.csdn.net/qq_41530816/article/details/98208946
+
+@color:red ;
+@boxbig:boxbig;
+@images: '../img';
+@colortext: color;
+@primary:  green;
+
+.box {
+  @{colortext}: @color;
+}
+
+.@{boxbig}{
+  // color:forestgreen
+  background-color: forestgreen;
+  color:$background-color
+}
+
+
+// 用一个变量名定义另一个变量
+// 先定义一个变量A
+// 接着定义变量B时，使用 “A” 给变量B赋值
+// 在应用时使用 @@B 即可（相当于 @(@B) ==> @A）
+.section {
+  @color: primary;
+
+  .element {
+    color: @@color;
+  }
+}
+// Usage
+body {
+  color: #444;
+  background: url("@{images}/white-sand.png");
+}

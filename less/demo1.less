@@ -1,0 +1,67 @@
+//官网：https://less.bootcss.com/features/
+//神人在转义：https://blog.csdn.net/qq_41530816/article/details/98208946
+
+@color: red;
+@boxbig: boxbig;
+@images: '../img';
+@colortext: color;
+@primary: green;
+
+// .box{
+//   // &:extend(.ground);
+//   font-size: 30px;
+//   &-dd{
+//     color: @color;
+//     .sss &{
+//       color:darkblue
+//     }
+
+//   }
+//   & .mm{
+//     .ss &{
+//       color:darkblue
+//     }
+//   }
+
+//   .dd{
+//     color:darkblue
+//   }
+
+// }
+
+// .box-ee{
+//   &:extend(.ground);
+// }
+
+// .box,
+// .box-ee:extend(.ground) {
+//   // body
+//   color: red;
+// }
+
+// .ground{
+//   background-color: darkblue;
+// }
+
+.bordered {
+  border-top: dotted 1px red;
+  border-bottom: solid 2px red;
+}
+
+.bordered1() {
+  border-top: dotted 1px black;
+  border-bottom: solid 2px black;
+}
+.box {
+  color: #111;
+  .bordered();
+}
+
+.box-dd {
+  color: #111;
+  .bordered1;
+}
+
+.box-ee {
+  &:extend(.bordered);
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // todo https://zhuanlan.zhihu.com/p/153330152
+      // const employee = {
+      //   firstName: 'Tapas',
+      //   lastName: 'Adhikary',
+      // }
+
+      // let handler = {
+      //   get: function (target, fieldName) {
+      //     if (fieldName === 'fullName') {
+      //       return `${target.firstName} ${target.lastName}`
+      //     }
+
+      //     return fieldName in target ? target[fieldName] : `No such property as, '${fieldName}'!`
+      //   },
+      // }
+
+      // const validator = {
+      //   set: function (obj, prop, value) {
+      //     if (prop === 'age') {
+      //       if (!Number.isInteger(value)) {
+      //         throw new TypeError('Age is always an Integer, Please Correct it!')
+      //       }
+      //       if (value < 0) {
+      //         throw new TypeError('This is insane, a negative age?')
+      //       }
+      //     }
+      //   },
+      // }
+
+      // let p = new Proxy(employee, handler)
+      // let pr = new Proxy(employee, validator)
+
+      // pr.age = 'test'
+
+      //   console.group('employedde')
+      //   console.log(p.firstName)
+      //   console.log(p.lastName)
+      //   console.log(p.org)
+      //   console.log(p.fullName)
+      //   console.groupEnd()
+
+      // let range = {
+      //   start: 1,
+      //   end: 5,
+      // }
+
+      // range = new Proxy(range, {
+      //   has(target, prop) {
+      //     return prop >= target.start && prop <= target.end
+      //   },
+      // })
+
+      // console.log(2 in range) // true
+      // console.log(9 in range) // false
+
+      // let user = {
+      //   name: 'lilei',
+      //   age: 34,
+      //   _password: '***',
+      // }
+      // user = new Proxy(user, {
+      //   deleteProperty(target, prop) {
+      //     // 拦截删除操作,需要返回布尔值
+      //     if (prop.startsWith('_')) {
+      //       throw new Error('不可删除')
+      //     } else {
+      //       delete target[prop]
+      //       return true
+      //     }
+      //   },
+      // })
+      // try {
+      //   delete user._password
+      // } catch (e) {
+      //   console.log(e.message) // 不可删除
+      // }
+      // console.log(user)
+
+      const productDescs = {}
+      const handler = {
+        set: function (target, key, value) {
+          console.log(key, 'key')
+          if (value.length > 150) {
+            value = value.substring(0, 150)
+          }
+          target[key] = value
+        },
+      }
+      const proxy = new Proxy(productDescs, handler)
+      proxy.name = 'ange'
+      productDescs.age = 33
+      console.log(proxy)
+      console.log(productDescs)
+    </script>
+  </body>
+</html>

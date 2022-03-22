@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 区别  块级作用域 不纯在声明提升  暂时性死区  常量变量 const 一定要赋初始值
+      // 暂时性死区：在代码块内，使用let和const命令声明变量之前，该变量都是不可用的，语法上被称为暂时性死区。
+      // let 和const 是使用块级作用域，而var 是使用函数作用域
+      // let 和 const 声明之前访问对应的变量和常量，会抛出ReferenceError错误，但在var 声明之前就访问对应的变量，会得到undefined
+      // 暂时性死区的本质就是，只要一进入当前作用域，所要使用的变量就已经存在了，但是不可获取，只有等到声明变量的那一行代码出现，才可以获取和使用该变量。
+      // if (true) {
+      //   console.log(a)
+      //   let a = 2
+      // }
+      // console.log(a)
+      // ma()
+      // const ma = () => {
+      //   console.log('2')
+      // }
+    </script>
+  </body>
+</html>
