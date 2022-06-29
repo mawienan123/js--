@@ -14,7 +14,7 @@
       // let 和 const 声明之前访问对应的变量和常量，会抛出ReferenceError错误，但在var 声明之前就访问对应的变量，会得到undefined
       // 暂时性死区的本质就是，只要一进入当前作用域，所要使用的变量就已经存在了，但是不可获取，只有等到声明变量的那一行代码出现，才可以获取和使用该变量。
       // if (true) {
-      //   console.log(a)
+      //   // console.log(a)
       //   let a = 2
       // }
       // console.log(a)
@@ -22,6 +22,20 @@
       // const ma = () => {
       //   console.log('2')
       // }
+
+      function f() {
+        console.log('I am outside!')
+      }
+      ;(function () {
+        // var f = undefined
+        if (false) {
+          function f() {
+            console.log('I am inside!')
+          }
+        }
+        console.log(f)
+        f()
+      })()
     </script>
   </body>
 </html>

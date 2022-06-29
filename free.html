@@ -6,164 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-      table {
-        display: table-cell;
-        height: 10px;
-        overflow: hidden;
+      * {
+        margin: 0;
+        padding: 0;
       }
-      td {
-        position: sticky !important;
-        z-index: 2;
+      .left {
+        background: #73de80; /* 绿色 */
+        opacity: 0.5;
+        border: 3px solid #f31264;
+        width: 200px;
+        height: 200px;
+        float: left;
       }
-      div {
-        /* height: 10000px; */
-        position: absolute;
+      .right {
+        /* 粉色 */
+        background: #ef5be2;
+        opacity: 0.5;
+        border: 3px solid #f31264;
+        width: 400px;
+        min-height: 100px;
+      }
+      .box {
+        background: #888;
+        height: 100%;
+        margin-left: 50px;
       }
     </style>
   </head>
-
   <body>
-    <div>222</div>
-    <script>
-      // const a = document.getElementsByTagName('div')[0]
-      // a.remove()
-      // console.log(document.getElementsByTagName('div')[0])
-      // console.log(2)
-      // setTimeout(() => {
-      //   console.log(document.getElementsByTagName('div')[0])
-      // }, 100)
-
-      // new Promise((resolve, reject) => {
-      //   console.log('promise1')
-      //   resolve()
-      // })
-      //   .then(() => {
-      //     console.log('then11')
-      //     new Promise((resolve, reject) => {
-      //       console.log('promise2')
-      //       resolve()
-      //     })
-      //       .then(() => {
-      //         console.log('then21')
-      //       })
-      //       .then(() => {
-      //         console.log('then23')
-      //       })
-      //   })
-      //   .then(() => {
-      //     console.log('then12')
-      //   })
-
-      // new Promise((resolve, reject) => {
-      //   console.log('promise1')
-      //   resolve()
-      // })
-      //   .then(() => {
-      //     console.log('then11')
-      //     return new Promise((resolve, reject) => {
-      //       console.log('promise2')
-      //       resolve()
-      //     })
-      //       .then(() => {
-      //         console.log('then21')
-      //       })
-      //       .then(() => {
-      //         console.log('then23')
-      //       })
-      //       .then(() => {
-      //         console.log('then234')
-      //       })
-      //       .then(() => {
-      //         console.log('then235')
-      //       })
-      //   })
-      //   .then(() => {
-      //     console.log('then12')
-      //   })
-
-      // Promise.resolve()
-      //   .then(() => {
-      //     console.log(0)
-      //     Promise.resolve(4)
-      //   })
-      //   .then((res) => {
-      //     console.log(res)
-      //   })
-
-      // Promise.resolve()
-      //   .then(() => {
-      //     console.log(1)
-      //   })
-      //   .then(() => {
-      //     console.log(2)
-      //   })
-      //   .then(() => {
-      //     console.log(3)
-      //   })
-      //   .then(() => {
-      //     console.log(5)
-      //   })
-      //   .then(() => {
-      //     console.log(6)
-      //   })
-
-      // 大家先思考一下
-
-      //makeRequest用来构造request对象
-      function makeRequest(request_url) {
-        let request = {
-          method: 'Get',
-          url: request_url,
-          headers: '',
-          body: '',
-          credentials: false,
-          sync: true,
-          responseType: 'text',
-          referrer: '',
-        }
-        return request
-      }
-      function XFetch(request) {
-        function executor(resolve, reject) {
-          console.log(1)
-          let xhr = new XMLHttpRequest()
-          xhr.open('GET', request.url, true)
-          xhr.ontimeout = function (e) {
-            reject(e)
-          }
-          xhr.onerror = function (e) {
-            reject(e)
-          }
-          xhr.onreadystatechange = function () {
-            if (this.readyState === 4) {
-              if (this.status === 200) {
-                resolve(this.responseText, this)
-              } else {
-                let error = {
-                  code: this.status,
-                  response: this.response,
-                }
-                reject(error, this)
-              }
-            }
-          }
-          xhr.send()
-        }
-        return new Promise(executor)
-      }
-
-      // var x1 = XFetch(makeRequest('https://time.geekbang.org/?category'))
-      // var x2 = x1.then(value => {
-      //     console.log(value)
-      //     return XFetch(makeRequest('https://www.geekbang.org/column'))
-      // })
-      // var x3 = x2.then(value => {
-      //     console.log(value)
-      //     return XFetch(makeRequest('https://time.geekbang.org'))
-      // })
-      // x3.catch(error => {
-      //     console.log(error)
-      // })
-    </script>
+    <div class="box">
+      <div class="left"></div>
+      <div class="right"></div>
+    </div>
   </body>
 </html>

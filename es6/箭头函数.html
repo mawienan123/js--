@@ -10,18 +10,18 @@
     <script>
       //1,this是静态的，始终指向函数声明时所在作用域下的this的值，call和apply都不能改变指针的指向
 
-      //   name = 1
-      //   function ma() {
-      //     console.log(this.name)
-      //   }
-      //   const ma2 = () => {
-      //     console.log(this.name)
-      //   }
-      //   name1 = {
-      //     name: 2,
-      //   }
-      //   ma.call(name1)
-      //   ma2.call(name1)
+      // name = 1
+      // function ma() {
+      //   console.log(this.name)
+      // }
+      // const ma2 = () => {
+      //   console.log(this.name)
+      // }
+      // name1 = {
+      //   name: 2,
+      // }
+      // ma.call(name1)
+      // ma2.call(name1)
 
       //2,不能作为构造函数实例化对象,箭头函数没有原型，不可以使用arguments，不可以yield，箭头函数不是generator函数
       //   const fund = () => {
@@ -54,30 +54,30 @@
       /*
             this 指向的是被调用方法的上一级对象，而不是它的最外层对象
               */
-      //   function foo() {
-      //     console.log(this.name)
-      //   }
-      //   const d = {
-      //     name: '222',
-      //     foo: foo,
-      //   }
-      //   const d1 = {
-      //     name: '333',
-      //     d: d,
-      //   }
-      //   d1.d.foo()
+      // function foo() {
+      //   console.log(this.name)
+      // }
+      // const d = {
+      //   name: '222',
+      //   foo: foo,
+      // }
+      // const d1 = {
+      //   name: '333',
+      //   d: d,
+      // }
+      // d1.d.foo()
 
-      //this 是在运行时被确定，而不是在定义时被确定
-      //   function foo() {
-      //     console.log(this.name)
-      //   }
-      //   const d = {
-      //     name: '222',
-      //     foo: foo,
-      //   }
-      //   var name = '3333'
-      //   const a = d.foo
-      //   a()
+      // this 是在运行时被确定，而不是在定义时被确定
+      // function foo() {
+      //   console.log(this.name)
+      // }
+      // const d = {
+      //   name: '222',
+      //   foo: foo,
+      // }
+      // var name = '3333'
+      // const a = d.foo
+      // a()
 
       //在方法的参数 中传入函数时也需要特别注意，传入函数的 this 也指向其方法被调用的上一级对象
 
@@ -95,7 +95,6 @@
       // var name = '33'
       // named(obj.foo)
 
-      //
       // var myObj = {
       //   name: '极客时间',
       //   showThis: function () {
@@ -117,14 +116,15 @@
       //   如果返回值是一个对象，那么 this 指向的就是那个返回的对象，如果返回值不是一个对象那么 this 还是指向函数的实例
       // function name(params) {
       //   this.name = 2
-      // return {}
+      //   console.log(this)
+      //   return {}
       // }
       // const a = new name()
       // console.log(a)
 
       // 箭头函数和普通函数this指向区别
 
-      //箭头函数不使用 this 的四种标准规则，而是根据外层（函数或者全局）作用域来决定 this 。
+      // //箭头函数不使用 this 的四种标准规则，而是根据外层（函数或者全局）作用域来决定 this 。
       // function foo() {
       //   // 返回一个箭头函数
       //   return () => {
@@ -157,7 +157,7 @@
 
       // 1,箭头函数只能用赋值式写法，不能用声明式写法
       // todo
-      // obj = {
+      // let obj = {
       //   func() {
       //     console.log(this)
       //     const arrowFunc = function () {
@@ -217,15 +217,14 @@
         window.module1 = { showData, updateData }
       })(window)
       var data = '22'
-
       const { showData, updateData } = module1
       showData(0)
 
-      function ma() {
-        console.log(this, data)
-      }
-      ma()
-      module1.showData(0)
+      // function ma() {
+      //   console.log(this, data)
+      // }
+      // ma()
+      // module1.showData(0)
       // module1.updateData(0)
       // module1.showData()
     </script>

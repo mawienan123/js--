@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //         function work(deadline) { // deadline 上面有一个 timeRemaining() 方法，能够获取当前浏览器的剩余空闲时间，单位 ms；有一个属性 didTimeout，表示是否超时
+      //   console.log(`当前帧剩余时间: ${deadline.timeRemaining()}`);
+      //   if (deadline.timeRemaining() > 1 || deadline.didTimeout) {
+      //      // 走到这里，说明时间有余，我们就可以在这里写自己的代码逻辑
+      //   }
+      //   // 走到这里，说明时间不够了，就让出控制权给主线程，下次空闲时继续调用
+      //   requestIdleCallback(work);
+      // }
+      // requestIdleCallback(work, { timeout: 1000 })
+      let deadlineTime // 当前帧结束时间
+      let callback // 需要回调的任务
+
+      let channel = new MessageChannel() // postMessage 的一种，该对象实例有且只有两个端口，并且可以相互收发事件，当做是发布订阅即可。
+      let port1 = channel.port1
+      let port2 = channel.port2
+
+      port2.onmessage = () => {
+        const timeRemaining = () => deadlineTime - performance.now()
+        if (timeRemaining() > 1 && callback) {
+          const deadline = { timeRemaining, didTimeout: false } // 同样的这里也是构造个参数
+          callback(deadline)
+        }
+      }
+
+      window.requestIdleCallback = function (cb) {
+        requestAnimationFrame((rafStartTime) => {
+          // 大概过期时间 = 默认这是一帧的开始时间 + 一帧大概耗时
+          deadlineTime = rafStartTime + 16
+          callback = cb
+          port1.postMessage(null)
+        })
+      }
+    </script>
+  </body>
+</html>

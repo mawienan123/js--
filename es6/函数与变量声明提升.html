@@ -26,6 +26,7 @@
       // ma()
 
       // todo 例子2
+
       // console.log('a' in window)
       // if (!'a' in window) {
       //   var a = 1
@@ -39,6 +40,9 @@
       //   a = 2
       //   console.log(a)
       //   return
+      //   // if (false) {
+      //   //   function a() {}
+      //   // }
       //   function a() {}
       // }
       // fn()
@@ -56,6 +60,7 @@
       // function getName() {
       //   console.log(3)
       // }
+
       // var getName = function () {
       //   console.log(1)
       // }
@@ -87,10 +92,9 @@
       // }
       // console.log(test) // 函数表达式
       // test() // 函数表达式
-
       /*
-        高级
-      */
+              高级
+            */
       // todo 例子7
 
       // console.log(test)
@@ -105,9 +109,15 @@
       // test()
 
       // todo 例子8
+
+      //       块内的函数声明会提升到块内的顶部，同时也会在全局作用域用var声明一个同名的变量，初始值为undefined
+      // 这个块外的全局同名变量的赋值时机是执行完块内那行函数声明语句后才赋值
+      // 块内的函数声明会提升到块内顶部，区别提升到块外，它并不会用var去声明一个同名的变量
+
       //https://juejin.cn/post/6844903955814694919#heading-4
       // console.log(a, window.a)
       // if (true) {
+      //   console.log(a)
       //   var a = 0
       //   function a() {}
       // }
@@ -143,7 +153,9 @@
       //   function a() {}
       //   console.log(`2 ${window.a},${a}`)
       //   a = 50
-      //   function a() {} // 再增加个
+      //   function a() {
+      //     console.log(1)
+      //   } // 再增加个
       //   console.log(`3 ${window.a},${a}`)
       //   a = 60
       //   console.log(`5 ${window.a},${a}`)
@@ -171,14 +183,7 @@
       //   var b = 2
       // }
 
-      // console.log(`${window.a},${a}`)
-      // {
-      //   a = 50
-      //   console.log(`${window.a},${a}`)
-      //   function a() {}
-      //   console.log(`${window.a},${a}`)
-      // }
-      // console.log(`${window.a},${a}`)
+      // 在提升的过程中，相同的函数会覆盖上一个函数，并且函数优先于变量提升
 
       // console.log(myname)
       // myname()
@@ -189,6 +194,7 @@
       //   console.log('函数showName被执行')
       // }
 
+      // ddd
       // function showName() {
       //   console.log('极客邦')
       // }
@@ -202,41 +208,6 @@
       // showName()
 
       // console.log(myname)
-
-      // var a = 2
-      // function add(b, c) {
-      //   console.trace()
-      //   return b + c
-      // }
-      // function addAll(b, c) {
-      //   var d = 10
-      //   result = add(b, c)
-      //   return a + result + d
-      // }
-      // addAll(3, 6)
-
-      // function runStack(n) {
-      //   if (n === 0) return 100
-      //   return runStack(n - 2)
-      // }
-      // runStack(50000)
-
-      // function runStack(n) {
-      //   while (n > 0) {
-      //     n -= 2
-      //   }
-      //   return 100
-      // }
-      // runStack(50000)
-
-      // var a = 10
-      // {
-      //   a = 99
-
-      //   a = 30
-      //   function a() {}
-      // }
-      // console.log(a)
 
       // var myname = '极客时间'
       // function showName() {
@@ -271,7 +242,7 @@
       //   var myName = '极客邦'
       //   bar()
       // }
-      // // var myName = '极客时间'
+      // var myName = '极客时间'
       // foo()
 
       // function bar() {
@@ -297,7 +268,7 @@
 
       // function foo() {
       //   var myName = '极客时间'
-      //   let test1 = 1
+      //   var test1 = 1
       //   const test2 = 2
       //   var innerBar = {
       //     setName: function (newName) {
@@ -314,34 +285,6 @@
       // bar.setName('极客邦')
       // bar.getName()
       // console.log(bar.getName())
-
-      // function copy(src) {
-      //   let type = typeof src
-      //   if ('object' === type) {
-      //     let result = Object.create(null)
-      //     for (let i in src) {
-      //       if (typeof src[i] === 'object') {
-      //         result[i] = copy(src[i])
-      //       } else {
-      //         result[i] = src[i]
-      //       }
-      //     }
-      //     return result
-      //   }
-
-      //   return src
-      // }
-
-      // function foo() {
-      //   var a = 1
-      //   var b = { name: '极客邦' }
-      //   function showName() {
-      //     var c = 2
-      //     var d = { name: '极客时间' }
-      //   }
-      //   showName()
-      // }
-      // foo()
     </script>
   </body>
 </html>

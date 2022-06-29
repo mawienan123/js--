@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // https://juejin.cn/post/7080457287084539940
+      function Car(make, model, year) {
+        this.make = make
+        this.model = model
+        this.year = year
+      }
+      function Ca1r(make, model, year) {
+        this.make = make
+        this.model = model
+        this.year = year
+      }
+      const auto = new Car('Honda', 'Accord', 1998)
+      const a = new Object()
+
+      function myInstanceof1(L, R) {
+        // 声明一个变量获取对象的__proto__
+        let link = L.__proto__
+        // 做循环（当link最终指向null，如果指向null的情况下都找不到那就返回false）
+        while (link !== null) {
+          // 如果找到说明R.prototype在L的原型链上，即返回true
+          console.log(link)
+          if (link === R.prototype) return true
+          // 逐级向下
+          link = link.__proto__
+        }
+        return false
+      }
+      console.log(myInstanceof1(auto, Ca1r)) // true
+    </script>
+  </body>
+</html>

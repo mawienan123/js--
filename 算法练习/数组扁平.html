@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const testArray = [{ name: 2 }, [2, [3, [4, [5, [6, [7, [[[[[[8, ['ha']]]]]]]]]]]]], [99, [88, 77]]]
+      //todo 1
+      const new1 = testArray.flat(Infinity)
+      console.log(new1, 'new1')
+
+      //todo 2
+      function flatten1(arr) {
+        let result = []
+        result = arr.reduce((pre, cur) => {
+          return Array.isArray(cur) ? pre.concat(flatten1(cur)) : pre.concat(cur)
+        }, [])
+        return result
+      }
+      console.log(flatten1(testArray), 'new2')
+
+      //todo 3
+
+      function flatten2(arr) {
+        let result = JSON.parse(JSON.stringify(arr))
+        while (result.some((item) => Array.isArray(item))) {
+          result = [].concat(...result)
+        }
+        return result
+      }
+
+      console.log(flatten2(testArray), 'new3')
+
+      //todo 4
+      function flatten3(arr) {
+        return arr.toString().split(',')
+      }
+      console.log(flatten3(testArray), 'new4') //   ["1", "2", "3", "4"]
+    </script>
+  </body>
+</html>

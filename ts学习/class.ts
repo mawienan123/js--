@@ -1,11 +1,13 @@
-//  class Person {
+class Persondd {
+  protected AnimalName: string
+  readonly age: number
+  static type: string
+  private _age: number
+  constructor(public name2: string) {}
 
-//   constructor(public name2: string){
-
-//   }
-
-//   // 抽象方法
-// }
+  // 抽象方法
+}
+let inst = new Persondd('2')
 
 // class Developer {
 //   constructor(public name: string) {

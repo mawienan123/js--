@@ -15,7 +15,7 @@
 
       function _new(fun, ...rest) {
         const newData = Object.create(fun.prototype)
-        const result = fun.call(newData, rest)
+        const result = fun.apply(newData, rest)
         console.log(result, newData)
         return typeof result === 'object' ? result : newData
       }
@@ -23,6 +23,14 @@
       var a = _new(Preson, '释迦', 13)
       console.log(a)
 
+      // function _new(func, ...rest) {
+      //   const newData = Object.create(func.prototype)
+      //   console.log(rest)
+      //   func.apply(newData, rest)
+      //   return typeof result === 'object' ? result : newData
+      // }
+      // var a = _new(Preson, '释迦', 13)
+      // console.log(a)
       // 在内存中创建一个新对象。
       // 这个新对象内部的[[Prototype]]指针被赋值为构造函数的 prototype 属性。
       // 构造函数内部的 this 被赋值为这个新对象（即 this 指向新对象）。

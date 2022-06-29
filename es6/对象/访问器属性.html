@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      // 1. 函数对象，都会天生自带一个prototype原型属性。
+      // 2. 每一个对象也天生自带一个属性__proto__指向生成它的函数对象的prototype。
+      // 3. 函数对象的prototype也有__proto__指向生成它的函数对象的prototype。
+
+      // https://juejin.cn/post/6844903800193417224
+      //         var book = {
+      //             _year: 2004,
+      //             edition: 1
+      //         };
+      //         Object.defineProperty(book, "year", {
+      //             get: function () {
+      //                 return this._year;
+      //             },
+      //             // set: function (newValue) {
+      //             //     if (newValue > 2004) {
+      //             //         this._year = newValue;
+      //             //         this.edition += newValue - 2004;
+      //             //     }
+      //             // }
+      //         });
+
+      //         book.year = 2005
+      //         console.log(book)
+
+      //         var mm={}
+      //         Object.defineProperties(mm, {
+      //             name: {
+      //                 value: 21
+      //             }
+      //         })
+      // console.log(mm)
+
+      //@@@@@@@@@@@@@@@@@@@@@@getPrototypeOf  法返回指定对象的原型
+      //   const prototype1 = {}
+      //   const object1 = Object.create(prototype1)
+      //   console.log(Object.getPrototypeOf(object1) === prototype1)
+
+      //   function Person() {}
+
+      // @@@@@@@@@@@@@@@@@@@@@@instanceof 用于判断一个变量是否属于某个对象的实例。也可以用来判断某个构造函数的prototype属性是否存在指定对象的原型链中。
+
+      //   instanceof 是用来判断对象是否属于某个对象的实例。
+
+      //     function Human() {}
+      // let human = new Human();
+
+      // // human 是 Human 的实例，所以结果输出true
+      // console.log(human instanceof Human); // true
+
+      // // 因为所有的类都继承Object，所以结果也输出true
+      // console.log(human instanceof Object); // true
+
+      // // 因为 human 对象不是数组，所以结果输出false
+      // console.log(human instanceof Array); // false
+
+      //   @@@@@@@@@@@@@@@@@@@@@@    hasOwnProperty()方法用来判断某个对象是否含有指定的自身属性
+      // obj.hasOwnProperty("属性名");//实例obj是否包含有圆括号中的属性,是则返回true,否则是false
+      //       所有继承了Object.prototype的对象都会从原型链上继承到hasOwnProperty方法，这个方法检测一个对象是否包含一个特定的属性，
+      // 和in不同，这个方法会忽略那些从原型链上继承的属性。
+
+      //       var o =new Object();
+      // o.prop="exists";
+
+      // function change(){
+      //   o.newprop=o.prop;
+      //   delete o.prop;
+      // }
+
+      // o.hasOwnProperty("prop")//true
+      // change()//删除o的prop属性
+      // o.hasOwnProperty("prop")//false
+      // //删除后在使用hasOwnProperty()来判断是否存在，返回已不存在了
+
+      // o.prop="exists";
+      // o.hasOwnProperty("prop");//true 自身的属性
+      // o.hasOwnProperty("toString");//false 继承自Object原型上的方法
+      // o.hasOwnProperty("hasOwnProperty");//false 继承自Object原型上的方法
+
+      //    @@@@@@@@@@@@@@@@@@@@@@  isPrototypeOf() 是 Object函数（类）的下的一个方法，用于判断当前对象是否为另外一个对象的原型，如果是就返回 true，否则就返回 false。
+      // https://juejin.cn/post/7026235897116885029
+      let o = new Object()
+      console.log(Object.isPrototypeOf(o)) // true
+    </script>
+  </body>
+</html>
