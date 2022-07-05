@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 使用Promise实现每隔1秒输出1,2,3
+      const arr = [1, 2, 3]
+      //   arr.reduce((i, v) => {
+      //     return i.then(() => {
+      //       return new Promise((resolve) => {
+      //         setTimeout(() => {
+      //           console.log(v)
+      //           resolve(v)
+      //         }, 1000)
+      //       })
+      //     })
+      //   }, Promise.resolve())
+      //   arr.reduce(
+      //     (p, x) =>
+      //       p.then(
+      //         () => new Promise((r) => setTimeout(() => r(console.log(x)), 1000))
+      //       ),
+      //     Promise.resolve()
+      //   )
+
+      //   arr.reduce(
+      //     (p, x) =>
+      //       p.then(new Promise((r) => setTimeout(() => r(console.log(x)), 1000))),
+      //     Promise.resolve()
+      //   )
+
+      //   arr.reduce(
+      //     (p, x) =>
+      //       p.then(
+      //         () => new Promise((r) => setTimeout(() => r(console.log(x)), 1000))
+      //       ),
+      //     Promise.resolve()
+      //   )
+    </script>
+    <script>
+      //   // 红灯3秒亮一次，黄灯2秒亮一次，绿灯1秒亮一次；如何让三个灯不断交替重复亮灯？（用Promise实现）三个亮灯函数已经存在：
+      //   function red() {
+      //     console.log('red')
+      //   }
+      //   function green() {
+      //     console.log('green')
+      //   }
+      //   function yellow() {
+      //     console.log('yellow')
+      //   }
+
+      //   const light = function (timer, cb) {
+      //     return new Promise((resolve) => {
+      //       setTimeout(() => {
+      //         cb()
+      //         resolve()
+      //       }, timer)
+      //     })
+      //   }
+      //   const step = function () {
+      //     Promise.resolve()
+      //       .then(() => {
+      //         return light(3000, red)
+      //       })
+      //       .then(() => {
+      //         return light(2000, green)
+      //       })
+      //       .then(() => {
+      //         return light(1000, yellow)
+      //       })
+      //       .then(() => {
+      //         return step()
+      //       })
+      //   }
+
+      //   step()
+
+      // 作者：LinDaiDai_霖呆呆
+      // 链接：https://juejin.cn/post/6844904077537574919
+      // 来源：稀土掘金
+      // 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+    </script>
+
+    <script>
+      const time = (timer) => {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve()
+          }, timer)
+        })
+      }
+      const ajax1 = () =>
+        time(2000).then(() => {
+          console.log(1)
+          return 1
+        })
+      const ajax2 = () =>
+        time(1000).then(() => {
+          console.log(2)
+          return 2
+        })
+      const ajax3 = () =>
+        time(1000).then(() => {
+          console.log(3)
+          return 3
+        })
+
+      function mergePromise(arr) {
+        const data = []
+
+        return new Promise((res) => {
+          arr.reduce((p, v, i) => {
+            return p.then(() => {
+              return new Promise((resolve) => {
+                const re = v().then((d) => {
+                  data[i] = d
+                  resolve(re)
+                  if (i === arr.length - 1) {
+                    res(data)
+                  }
+                })
+              })
+            })
+          }, Promise.resolve())
+        })
+      }
+
+      mergePromise([ajax1, ajax2, ajax3]).then((data) => {
+        console.log('done')
+        console.log(data) // data 为 [1, 2, 3]
+      })
+    </script>
+  </body>
+</html>

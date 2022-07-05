@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      /* 弹性盒模式 */
+      /* div.parent {
+        width: 100px;
+        height: 100px;
+        background-color: aqua;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .child {
+        width: 50px;
+        height: 50px;
+        background-color: rebeccapurple;
+      } */
+
+      /* 栅格模式 */
+      /* div.parent {
+        width: 100px;
+        height: 100px;
+        background-color: aqua;
+        position: relative;
+        display: grid;
+      }
+
+      div.child {
+        width: 50px;
+        height: 50px;
+        background-color: rebeccapurple;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      } */
+
+      /* 绝对定位 */
+      /* div.parent {
+        width: 100px;
+        height: 100px;
+        background-color: aqua;
+        position: relative;
+      }
+
+      div.child {
+        width: 50px;
+        background-color: rebeccapurple;
+        height: 50px;
+        margin: auto;
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+      } */
+
+      /* table-cell */
+      /* div.parent {
+        width: 100px;
+        height: 100px;
+        background-color: aqua;
+        display: table-cell;
+        vertical-align: middle;
+      }
+
+      div.child {
+        width: 50px;
+        background-color: rebeccapurple;
+        height: 50px;
+        margin: 0 auto;
+      } */
+      /* div.child {
+        width: 50px;
+        background-color: rebeccapurple;
+        height: 10px;
+
+        justify-self: center;
+        align-self: center;
+        margin: auto;
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+      }
+
+      div.parent {
+        font-size: 0;
+        text-align: center;
+        &::before {
+          content: '';
+          display: inline-block;
+          width: 0;
+          height: 100%;
+          vertical-align: middle;
+        }
+      }
+
+      div.parent {
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      div.child {
+        width: 50px;
+        height: 10px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -25px;
+        margin-top: -5px;
+      } */
+
+      div.parent {
+        width: 100px;
+        height: 100px;
+        background-color: aqua;
+        /* display: flex;
+        justify-content: center;
+        align-items: center; */
+
+        /* position: relative; */
+
+        /* position: relative; */
+
+        display: table-cell;
+        vertical-align: middle;
+      }
+
+      div.child {
+        width: 50px;
+        background-color: rebeccapurple;
+        height: 50px;
+
+        /* position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -25px;
+        margin-top: -25px; */
+
+        /* position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%); */
+
+        /* margin: auto;
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0; */
+
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="parent">
+      <div class="child"></div>
+    </div>
+    <script></script>
+  </body>
+</html>

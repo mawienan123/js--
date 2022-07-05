@@ -38,8 +38,12 @@ type userDDD = {
   name: string
   dddname: string
 }
-type PickUser = Pick<userDDD, 'age' | 'name' | 'dddname'>
+type PickUser = Pick<userDDD, 'age' | 'name'>
 
+const usedrDDD: PickUser = {
+  age: 'd',
+  name: 'd',
+}
 // 4.Exclude （排除） 过滤出前者独有的属性（排除后者所有属性）todo
 // type Exclude<T, U> = T extends U ? never : T;
 let str: Exclude<'b' | 'a' | '1', 'y' | 'z' | '1'>
@@ -51,6 +55,8 @@ interface User {
   name: string
 }
 // 相当于: type OmitUser = { age: number; name: string; }
+
+// type Omid<T,D extends keyof any>=Pick<T,Exclude<keyof T,D>>
 type OmitUser = Omit<User, 'id'>
 
 // 6.Record  以 typeof 格式快速创建一个类型，此类型包含一组指定的属性且都是必填 todo

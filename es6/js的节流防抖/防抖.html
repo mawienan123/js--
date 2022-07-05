@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="debounce">我要发财</button>
+    <script>
+      // 函数防抖
+      // let timer = false;
+      // document.getElementById("debounce").onclick = function(){
+      //     clearTimeout(timer); // 清除未执行的代码，重置回初始化状态
+      //     timer = setTimeout(function(){
+      //         console.log('发财了');
+      //     }, 3000);
+      // };
+      function ajax(content) {
+        console.log('ajax request ' + content)
+      }
+
+      function debounce(fn, dely) {
+        let timer = null
+        return function (a) {
+          clearTimeout(timer)
+          timer = setTimeout(() => {
+            fn(a)
+          }, dely)
+        }
+      }
+      let debounceAjax = debounce(ajax, 500)
+
+      document.getElementById('debounce').onclick = function () {
+        debounceAjax('发财了')
+      }
+    </script>
+  </body>
+</html>

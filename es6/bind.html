@@ -8,7 +8,7 @@
   </head>
   <body>
     <script>
-      // Function.prototype._bind = function (arg) {
+      // TODO:Function.prototype._bind = function (arg) {
       //   const self = this
       //   // 不能用箭头函数因为获取不到箭头函数里面的arguments
       //   return function () {
@@ -39,7 +39,7 @@
 
       // ma.myBind(a, '2', '3')()
 
-      // apply封装
+      // TODO: apply封装
       // Function.prototype._apply = function (arg, rest) {
       //   const _this = Symbol('linshi')
       //   arg[_this] = this
@@ -56,7 +56,7 @@
       // }
       // ma._apply(a, [1, 2])
 
-      //   call封装
+      //  TODO: call封装
       // Function.prototype._call = function (arg, ...rest) {
       //   const _this = Symbol('linshi')
       //   arg[_this] = this
@@ -73,7 +73,7 @@
       // }
       // ma._call(a, 1, 2)
 
-      // Function.prototype.onlyBind = function (arg) {
+      //TODO: Function.prototype.onlyBind = function (arg) {
       //   arg.__fn__ = this
       //   let args = [...arguments].slice(1)
       //   arg.__result__ = function () {
@@ -94,23 +94,50 @@
 
       // ma.onlyBind(a)('dd', 'ccc')
 
-      // Function.prototype.bind = function (context) {
-
+      //TODO:
+      // Function.prototype.bbind = function (fn, ...rest) {
+      //   const self = this
+      //   return function () {
+      //     self.apply(fn, rest)
+      //   }
       // }
 
-      // function ClassA(str, fn, obj, arr) {
-      //     console.log(this.name);
-      //     console.log(str);
-      //     fn();
-      //     console.log(obj);
-      //     console.log(arr);
+      // Function.prototype.onlyBind = function (arg) {
+      //   arg.__fn__ = this
+      //   let args = [...arguments].slice(1)
+      //   arg.__result__ = function () {
+      //     let result_args = [...args, ...arguments]
+      //     arg.__fn__(...result_args)
+      //   }
+      //   return arg.__result__
       // }
 
-      // var obj = {
-      //     name: 'name'
-      // };
+      Function.prototype.ccall = function (fn, ...rest) {
+        const _this = Symbol('this')
+        fn[_this] = this
+        const result = fn[_this](...rest)
+        delete fn[_this]
+        return result
+      }
 
-      // var a = ClassA.bind(obj,'string')
+      Function.prototype.aapply = function (fn, rest) {
+        const _this = Symbol('this')
+        fn[_this] = this
+        const result = fn[_this](...rest)
+        delete fn[_this]
+        return result
+      }
+
+      function ma(value, value1) {
+        console.log(this)
+        console.log(value, value1)
+      }
+      const ma1 = {
+        name: 'mamamma',
+      }
+      // ma.bbind(ma1, 'aaaa')()
+      // ma.ccall(ma1, 'aaaa', 'bbbb')
+      ma.aapply(ma1, ['aaaa', 'bbbb'])
     </script>
   </body>
 </html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body,
+      html {
+        height: 100%;
+      }
+      .box {
+        position: relative;
+        height: 100%;
+      }
+      .middle {
+        height: 100px;
+        width: 100%;
+        position: absolute;
+        top: 0px;
+        background-color: yellow;
+      }
+
+      .left {
+        background-color: blue;
+        position: absolute;
+        width: 100%;
+        top: 100px;
+        bottom: 100px;
+      }
+      .right {
+        height: 100px;
+        background-color: green;
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+      }
+      .n {
+        height: 100px;
+        width: 100%;
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <div class="middle">上</div>
+      <div class="left">
+        <div class="n"></div>
+        <div class="n"></div>
+        <div class="n"></div>
+        <div class="n"></div>
+        <div class="n"></div>
+        <div class="n"></div>
+        <div class="n"></div>
+        <div class="n"></div>
+      </div>
+      <div class="right">右边</div>
+    </div>
+  </body>
+</html>

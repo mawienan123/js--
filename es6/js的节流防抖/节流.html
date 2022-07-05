@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <button id="throttle">我要花钱</button>
+
+    <script>
+      let sign = true
+      //   function throttle() {
+      //     if (!sign) {
+      //       return
+      //     }
+      //     sign = false
+      //     setTimeout(() => {
+      //       sign = true
+      //       console.log('执行')
+      //     }, 2000)
+      //   }
+
+      // let sign = true
+
+      document.getElementById('throttle').onclick = function () {
+        if (!sign) {
+          return
+        }
+        sign = false
+        console.log('优秀')
+        setTimeout(() => {
+          sign = true
+        }, 2000)
+      }
+    </script>
+  </body>
+</html>
